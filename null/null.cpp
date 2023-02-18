@@ -1,10 +1,14 @@
 class Solution {
 public:
-    int minimizeSum(vector<int>& nums) {
+    int minImpossibleOR(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        int n = nums.size();
-        
-        long long ans = min((nums[n-3]-nums[0]), min((nums[n-2]-nums[1]), nums[n-1]-nums[2]));
-        return ans;
+        int n = 1;
+        for(int i = 0; i < nums.size(); ++i){
+            if(nums[i] > n) return n;
+            if(nums[i] == n) { 
+                n = n*2; 
+            }
+        }
+        return n;
     }
 };
