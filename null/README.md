@@ -1,39 +1,30 @@
-<h2><a href="https://leetcode.com/problems/minimum-score-by-changing-two-elements/">null. Minimum Score by Changing Two Elements</a></h2><h3>null</h3><hr>Can you solve this real interview question? Minimum Score by Changing Two Elements - You are given a 0-indexed integer array nums.
+<h2><a href="https://leetcode.com/problems/minimum-impossible-or/">null. Minimum Impossible OR</a></h2><h3>null</h3><hr>Can you solve this real interview question? Minimum Impossible OR - You are given a 0-indexed integer array nums.
 
- * The low score of nums is the minimum value of |nums[i] - nums[j]| over all 0 <= i < j < nums.length.
- * The high score of nums is the maximum value of |nums[i] - nums[j]| over all 0 <= i < j < nums.length.
- * The score of nums is the sum of the high and low scores of nums.
+We say that an integer x is expressible from nums if there exist some integers 0 <= index1 < index2 < ... < indexk < nums.length for which nums[index1] | nums[index2] | ... | nums[indexk] = x. In other words, an integer is expressible if it can be written as the bitwise OR of some subsequence of nums.
 
-To minimize the score of nums, we can change the value of at most two elements of nums.
-
-Return the minimum possible score after changing the value of at most two elements of nums.
-
-Note that |x| denotes the absolute value of x.
+Return the minimum positive non-zero integer that is not expressible from nums.
 
  
 
 Example 1:
 
 
-Input: nums = [1,4,3]
-Output: 0
-Explanation: Change value of nums[1] and nums[2] to 1 so that nums becomes [1,1,1]. Now, the value of |nums[i] - nums[j]| is always equal to 0, so we return 0 + 0 = 0.
+Input: nums = [2,1]
+Output: 4
+Explanation: 1 and 2 are already present in the array. We know that 3 is expressible, since nums[0] | nums[1] = 2 | 1 = 3. Since 4 is not expressible, we return 4.
 
 
 Example 2:
 
 
-Input: nums = [1,4,7,8,5]
-Output: 3
-Explanation: Change nums[0] and nums[1] to be 6. Now nums becomes [6,6,7,8,5].
-Our low score is achieved when i = 0 and j = 1, in which case |nums[i] - nums[j]| = |6 - 6| = 0.
-Our high score is achieved when i = 3 and j = 4, in which case |nums[i] - nums[j]| = |8 - 5| = 3.
-The sum of our high and low score is 3, which we can prove to be minimal.
+Input: nums = [5,3,2]
+Output: 1
+Explanation: We can show that 1 is the smallest number that is not expressible.
 
 
  
 
 Constraints:
 
- * 3 <= nums.length <= 105
+ * 1 <= nums.length <= 105
  * 1 <= nums[i] <= 109
