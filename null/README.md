@@ -1,30 +1,39 @@
-<h2><a href="https://leetcode.com/problems/minimum-impossible-or/">null. Minimum Impossible OR</a></h2><h3>null</h3><hr>Can you solve this real interview question? Minimum Impossible OR - You are given a 0-indexed integer array nums.
+<h2><a href="https://leetcode.com/problems/minimum-operations-to-reduce-an-integer-to-0/">null. Minimum Operations to Reduce an Integer to 0</a></h2><h3>null</h3><hr>Can you solve this real interview question? Minimum Operations to Reduce an Integer to 0 - You are given a positive integer n, you can do the following operation any number of times:
 
-We say that an integer x is expressible from nums if there exist some integers 0 <= index1 < index2 < ... < indexk < nums.length for which nums[index1] | nums[index2] | ... | nums[indexk] = x. In other words, an integer is expressible if it can be written as the bitwise OR of some subsequence of nums.
+ * Add or subtract a power of 2 from n.
 
-Return the minimum positive non-zero integer that is not expressible from nums.
+Return the minimum number of operations to make n equal to 0.
+
+A number x is power of 2 if x == 2i where i >= 0.
 
  
 
 Example 1:
 
 
-Input: nums = [2,1]
-Output: 4
-Explanation: 1 and 2 are already present in the array. We know that 3 is expressible, since nums[0] | nums[1] = 2 | 1 = 3. Since 4 is not expressible, we return 4.
+Input: n = 39
+Output: 3
+Explanation: We can do the following operations:
+- Add 20 = 1 to n, so now n = 40.
+- Subtract 23 = 8 from n, so now n = 32.
+- Subtract 25 = 32 from n, so now n = 0.
+It can be shown that 3 is the minimum number of operations we need to make n equal to 0.
 
 
 Example 2:
 
 
-Input: nums = [5,3,2]
-Output: 1
-Explanation: We can show that 1 is the smallest number that is not expressible.
+Input: n = 54
+Output: 3
+Explanation: We can do the following operations:
+- Add 21 = 2 to n, so now n = 56.
+- Add 23 = 8 to n, so now n = 64.
+- Subtract 26 = 64 from n, so now n = 0.
+So the minimum number of operations is 3.
 
 
  
 
 Constraints:
 
- * 1 <= nums.length <= 105
- * 1 <= nums[i] <= 109
+ * 1 <= n <= 105
