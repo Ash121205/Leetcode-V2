@@ -1,12 +1,30 @@
 class Solution {
 public:
-    int minOperations(int n) {
-         if (n==0) return 0;
-        int x = floor(1.0 * log2(n));
-        int y = ceil(1.0 * log2(n));
-        if(abs(pow(2,x)-n)>abs(pow(2,y)-n))
-            return 1+ minOperations((abs(pow(2,y)-n)));
-        else
-            return 1+ minOperations((abs(pow(2,x)-n)));
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        vector<vector<int>> ans;
+        map<int, int> mpp;
+        for(int i=0;i<nums1.size();i++)
+            {
+                mpp[nums1[i][0]] = nums1[i][1];
+            }
+            
+            for(int i=0;i<nums2.size();i++)
+            {
+                    if(mpp.find(nums2[i][0])!=mpp.end())
+                    {
+                            mpp[nums2[i][0]] = mpp[nums2[i][0]]+nums2[i][1]; 
+                    }
+                    else
+                    {
+                            mpp[nums2[i][0]] = nums2[i][1];
+                    }
+            }
+            
+            for(auto &it:mpp)
+            {
+                    ans.push_back({it.first,it.second});
+            }
+            
+            return ans;
     }
 };
