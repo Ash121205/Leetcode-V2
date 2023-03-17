@@ -1,30 +1,72 @@
-class Solution {
+class Trie {
+
+    struct TrieNode {
+        TrieNode *arr[26];
+        bool end;
+
+        TrieNode() {
+            memset(arr, 0, sizeof(arr));
+            end = false;
+        }
+    };
 public:
-    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
-        vector<vector<int>> ans;
-        map<int, int> mpp;
-        for(int i=0;i<nums1.size();i++)
+    TrieNode *root;
+    Trie() {
+        root = new TrieNode();        
+    }
+    
+    void insert(string word) {
+        TrieNode *cur = root;
+        for(int i=0;i<word.size();i++)
+        {
+            if(cur -> arr[word[i]-'a'] == NULL)
             {
-                mpp[nums1[i][0]] = nums1[i][1];
+                cur->arr[word[i]-'a'] = new TrieNode();
             }
-            
-            for(int i=0;i<nums2.size();i++)
+            cur = cur->arr[word[i]-'a'];
+        }
+
+        cur->end = true;
+    }
+    
+    bool search(string word) {
+        TrieNode *cur = root;
+        int c = 0;
+
+        for(int i=0;i<word.size();i++)
+        {
+            c = word[i]-'a';
+
+            if(cur->arr[c] == NULL)
             {
-                    if(mpp.find(nums2[i][0])!=mpp.end())
-                    {
-                            mpp[nums2[i][0]] = mpp[nums2[i][0]]+nums2[i][1]; 
-                    }
-                    else
-                    {
-                            mpp[nums2[i][0]] = nums2[i][1];
-                    }
+                return false;
             }
-            
-            for(auto &it:mpp)
-            {
-                    ans.push_back({it.first,it.second});
-            }
-            
-            return ans;
+            cur = cur->arr[c];
+        }
+
+        return cur->end;
+    }
+    
+    bool startsWith(string prefix) {
+        TrieNode *cur = root;
+
+        int c=0;
+        for(int i=0;i<prefix.size();i++)
+        {
+            c = prefix[i]-'a';
+            if(cur->arr[c] == NULL) return false;
+
+            cur = cur->arr[c];
+        }
+
+        return true;
     }
 };
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
